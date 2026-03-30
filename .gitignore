@@ -7,7 +7,6 @@ __pycache__/
 
 # Testing
 .pytest_cache/
-.coverage
 
 # OS
 .DS_Store

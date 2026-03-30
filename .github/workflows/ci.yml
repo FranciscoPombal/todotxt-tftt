@@ -13,7 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Install uv with caching
+      # 2. Install todo.sh (todotxt-cli) so integration tests can run
+      - name: Install todo.sh
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y todotxt-cli
+          sudo ln -s /usr/bin/todo-txt /usr/local/bin/todo.sh
+
+      # 3. Install uv with caching
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
