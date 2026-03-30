@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug todotxt-tftt (Default)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "todotxt_tftt",
+            "console": "integratedTerminal",
+            "env": {
+                "TODO_SH": "todo.sh -d ${workspaceFolder}/test_files/todo.cfg"
+            }
+        },
+        {
+            "name": "Debug todotxt-tftt (--pri)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "todotxt_tftt",
+            "console": "integratedTerminal",
+            "args": [
+                "--pri"
+            ],
+            "env": {
+                "TODO_SH": "todo.sh -d ${workspaceFolder}/test_files/todo.cfg"
+            }
+        },
+        {
+            "name": "Debug todotxt-tftt (--all)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "todotxt_tftt",
+            "console": "integratedTerminal",
+            "args": [
+                "--all"
+            ],
+            "env": {
+                "TODO_SH": "todo.sh -d ${workspaceFolder}/test_files/todo.cfg"
+            }
+        },
+        {
+            "name": "Debug todotxt-tftt (Help)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "todotxt_tftt",
+            "console": "integratedTerminal",
+            "args": [
+                "--help"
+            ],
+            "env": {
+                "TODO_SH": "todo.sh -d ${workspaceFolder}/test_files/todo.cfg"
+            }
+        }
+    ]
+}

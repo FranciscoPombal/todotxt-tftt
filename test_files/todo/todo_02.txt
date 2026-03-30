@@ -1,0 +1,5 @@
+(A) 2026-03-12 In progress task first status:in_progress
+2026-03-12 Backlog task without status
+(B) Blocked task status:blocked
+Task with multiple status status:in_progress tag:value status:blocked
+x 2026-03-15 2026-03-12 Completed task

@@ -1,0 +1,31 @@
+Dummy task 1
+(A) 2026-03-12 ++++ TESTING TESTING TESTING TESTING TESTING TESTING ++++
+(A) 2026-03-12 Recent in progress task status:in_progress
+2026-03-12 task multiple statuses status:blocked status:in_progress
+2026-03-12 task multiple statuses interleaved status:in_progress tag:value status:in_progress status:blocked
+(B) 2026-03-10 In progress task 2 days old status:in_progress
+(C) 2026-03-05 In progress task 7 days old status:in_progress
+(D) 2026-02-25 In progress task 15 days old status:in_progress
+(A) 2026-02-15 In progress task 25 days old status:in_progress
+2026-02-10 Older unprioritized in progress task exactly 30 days old status:in_progress
+2026-02-01 In progress task 40 days old (should be fully saturated color) status:in_progress
+(C) 2026-03-11 Recent blocked task @home status:blocked
+2026-03-01 Blocked task 11 days old status:blocked
+2026-02-20 Blocked task 20 days old status:blocked
+2025-12-01 Very old blocked task way past 30 days status:blocked
+(A) 2026-03-12 Recent backlog prioritized task
+2026-03-08 Backlog task 4 days old
+2026-02-28 Backlog task 12 days old
+2026-02-15 Medium age backlog task 25 days old
+2026-01-15 Old backlog task from 2 months ago
+2025-06-15 Very old backlog task from previous year
+Backlog task with no creation date at all
+(Z) Dateless backlog prioritized task
+2026-03-12 x (A) QWE
+(H) 2026-03-12 status:in_progress inline status should be ignored and the next tags matched status:blocked due:2027-01-01
+x 2026-03-12 2026-03-01 Completed normally
+x 2026-03-10 Completed without creation date
+x 2025-01-01 2024-12-01 Completed task from last year
+2026-03-13 BBBBBBBBBBBB NODATE backlog noprio task @work
+2026-03-13 BBBBBBBBBBBB NODATE backlog noprio task @foo @home
+2026-03-13 BBBBBBBBBBBB NODATE backlog noprio task @foo @home +projx

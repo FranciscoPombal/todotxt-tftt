@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "todotxt-tftt"
+version = "0.1.0"
+description = "A frontend for todo.sh"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+authors = [{ name = "Francisco" }]
+
+[project.scripts]
+todotxt-tftt = "todotxt_tftt.core:main"
+
+[tool.uv]
+default-groups = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "hypothesis>=6.151.9",
+    "mypy>=1.19.1",
+    "pyright>=1.1.408",
+    "ruff>=0.15.6",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+preview = true
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "TCH", "S", "PT"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Allow `assert` in tests since that's exactly how Pytest expects to operate
+"tests/**/*.py" = ["S101"]
+
+[tool.pytest.ini_options]
+addopts = "-ra -q --strict-markers --strict-config --tb=short --cov=todotxt_tftt --cov-report=term-missing"
+testpaths = ["tests"]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:third_party_lib_you_cant_control.*:",
+]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+deprecateTypingAliases = true
+disableBytesTypePromotions = true
+reportMissingSuperCall = true
+reportUnusedCallResult = true
+reportImplicitStringConcatenation = true
+reportImplicitOverride = true
+reportUninitializedInstanceVariable = true
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+#follow_untyped_imports = true
+# The "Beyond Strict" opt-ins
+warn_unreachable = true
+#explicit_package_bases = true
+disallow_any_unimported = true
+# disallow_any_explicit = true # Uncomment this if you truly want to ban the word 'Any'
+# Enable hyper-pedantic optional checks
+enable_error_code = [
+    "ignore-without-code",
+    "redundant-expr",
+    "possibly-undefined",
+    "truthy-bool",
+    "truthy-iterable",
+]

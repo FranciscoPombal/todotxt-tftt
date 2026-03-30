@@ -1,0 +1,13 @@
+# Virtual environments
+.venv/
+
+# Python caching
+__pycache__/
+.ruff_cache/
+
+# Testing
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db

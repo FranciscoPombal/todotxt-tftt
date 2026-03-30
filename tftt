@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -e -o pipefail -u
+
+# 1. Make sure we are in the repository directory first
+SCRIPT_PATH=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${SCRIPT_PATH}")
+cd "${THIS_DIR}"
+
+# 2. Make sure uv is available and create virtual environment.
+if ! command -v uv &> /dev/null; then
+    printf "Error: uv is not installed, please install uv and try again.\n"
+    exit 1
+fi
+
+# 3. Intercept the 'usage' command sent by 'todo.sh help'
+if [[ "$#" -eq 1 ]] && [[ "$1" = "usage" ]]; then
+    exec uv run todotxt-tftt --help
+fi
+
+# 4. todo.sh passes the action name ('tftt') as the first argument ($1).
+# We remove it with `shift` so Python doesn't treat it as a search filter!
+shift
+# 5. Execute the application. 'uv run' will automatically bootstrap the project environment if missing.
+exec uv run todotxt-tftt "$@"
