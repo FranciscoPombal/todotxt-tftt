@@ -5,6 +5,9 @@ on:
     branches: ["master"]
   pull_request:
 
+env:
+  TODO_TXT_CLI_VERSION: "2.13.0"
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,12 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Install todo.sh (todotxt-cli) so integration tests can run
+      # 2. Install todo.sh from the official GitHub release
       - name: Install todo.sh
         run: |
-          sudo apt-get update
-          sudo apt-get install -y todotxt-cli
-          sudo ln -s /usr/bin/todo-txt /usr/local/bin/todo.sh
+          curl -fsSL "https://github.com/todotxt/todo.txt-cli/releases/download/v${TODO_TXT_CLI_VERSION}/todo.txt_cli-${TODO_TXT_CLI_VERSION}.tar.gz" | tar xzf -
+          sudo install -m 755 "todo.txt_cli-${TODO_TXT_CLI_VERSION}/todo.sh" /usr/local/bin/todo.sh
+          install -m 644 "todo.txt_cli-${TODO_TXT_CLI_VERSION}/todo.cfg" ~/.todo.cfg
+          rm -rf "todo.txt_cli-${TODO_TXT_CLI_VERSION}"
 
       # 3. Install uv with caching
       - name: Install uv
