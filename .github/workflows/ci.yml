@@ -5,6 +5,10 @@ on:
     branches: ["master"]
   pull_request:
 
+env:
+  TODO_TXT_CLI_VERSION: "2.13.0"
+  TODO_TXT_CLI_SHA256: "d3b925434029aac212213c103fb6573a4f960c74dd467a3efac9bd9afe89d15f"
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,7 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Install uv with caching
+      # 2. Install todo.sh from the official GitHub release
+      - name: Install todo.sh
+        run: |
+          curl -fsSL -o todo.txt_cli.tar.gz "https://github.com/todotxt/todo.txt-cli/releases/download/v${TODO_TXT_CLI_VERSION}/todo.txt_cli-${TODO_TXT_CLI_VERSION}.tar.gz"
+          echo "${TODO_TXT_CLI_SHA256}  todo.txt_cli.tar.gz" | sha256sum -c -
+          tar xzf todo.txt_cli.tar.gz
+          sudo install -m 755 "todo.txt_cli-${TODO_TXT_CLI_VERSION}/todo.sh" /usr/local/bin/todo.sh
+          install -m 644 "todo.txt_cli-${TODO_TXT_CLI_VERSION}/todo.cfg" ~/.todo.cfg
+          rm -rf "todo.txt_cli-${TODO_TXT_CLI_VERSION}" todo.txt_cli.tar.gz
+
+      # 3. Install uv with caching
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
